@@ -19,8 +19,8 @@ public class comestart implements Screen {
 	private float showTime = 0;
 	private TextureAtlas atlas;
 	Array<TextureRegion> frames = new Array<TextureRegion>();
-Game game;
-	public comestart(Game game)
+come game;
+	public comestart(come game)
 	{
 		this.game = game;
 		batch = new SpriteBatch();

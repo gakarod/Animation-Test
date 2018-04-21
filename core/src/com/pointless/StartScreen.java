@@ -57,10 +57,10 @@ public class StartScreen extends ScreenAdapter {
     private Texture bDnTexture;
     private Texture bgTexture;
 
-    private final Game game;
+    private final come game;
 
 
-    public StartScreen(Game game) {
+    public StartScreen(come game) {
 
         this.game = game;
 
@@ -83,38 +83,6 @@ public class StartScreen extends ScreenAdapter {
         bDnTexture = new Texture(Gdx.files.internal("playPress.png"));
 
 
-        ImageButton play1 = new ImageButton(
-
-                new TextureRegionDrawable(new TextureRegion(bUpTexture)),
-
-                new TextureRegionDrawable(new TextureRegion(bDnTexture))
-
-        );
-
-        ImageButton play2 = new ImageButton(
-
-                new TextureRegionDrawable(new TextureRegion(bUpTexture)),
-
-                new TextureRegionDrawable(new TextureRegion(bDnTexture))
-
-        );
-
-        ImageButton play3 = new ImageButton(
-
-                new TextureRegionDrawable(new TextureRegion(bUpTexture)),
-
-                new TextureRegionDrawable(new TextureRegion(bDnTexture))
-
-        );
-
-
-        ImageButton play4 = new ImageButton(
-
-                new TextureRegionDrawable(new TextureRegion(bUpTexture)),
-
-                new TextureRegionDrawable(new TextureRegion(bDnTexture))
-
-        );
 
         ImageButton play5 = new ImageButton(
 
@@ -126,61 +94,7 @@ public class StartScreen extends ScreenAdapter {
 
         // Add event listener to this button
 
-        play1.addListener(new ActorGestureListener() {
 
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-
-                super.tap(event, x, y, count, button);
-
-                game.setScreen(new comestart(game));
-
-                dispose();
-
-            }
-
-        });
-
-        play2.addListener(new ActorGestureListener() {
-
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-
-                super.tap(event, x, y, count, button);
-
-                game.setScreen(new second(game));
-
-                dispose();
-
-            }
-
-        });
-
-        play3.addListener(new ActorGestureListener() {
-
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-
-                super.tap(event, x, y, count, button);
-
-                game.setScreen(new third(game));
-
-                dispose();
-
-            }
-
-        });
-
-        play4.addListener(new ActorGestureListener() {
-
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-
-                super.tap(event, x, y, count, button);
-
-                game.setScreen(new fourth(game));
-
-                dispose();
-
-            }
-
-        });
 
 
         play5.addListener(new ActorGestureListener() {
@@ -189,7 +103,7 @@ public class StartScreen extends ScreenAdapter {
 
                 super.tap(event, x, y, count, button);
 
-                game.setScreen(new fifth(game));
+                game.setScreen(new fifth(game,0));
 
                 dispose();
 
@@ -198,17 +112,11 @@ public class StartScreen extends ScreenAdapter {
         });
 
 
-        play1.setPosition(WORLD_WIDTH / 4, WORLD_HEIGHT / 4, Align.center);
-        play2.setPosition(3 * WORLD_WIDTH / 4, WORLD_HEIGHT / 4, Align.center);
-        play3.setPosition(WORLD_WIDTH / 4, 3 * WORLD_HEIGHT / 4, Align.center);
-        play4.setPosition(3 * WORLD_WIDTH / 4, 3 * WORLD_HEIGHT / 4, Align.center);
+
         play5.setPosition(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, Align.center);
 
 
-        stage.addActor(play1);
-        stage.addActor(play2);
-        stage.addActor(play3);
-        stage.addActor(play4);
+
         stage.addActor(play5);
 
 
@@ -239,7 +147,7 @@ public class StartScreen extends ScreenAdapter {
 
         stage.dispose();
 
-        bDnTexture.dispose();
+        bgTexture.dispose();
 
         bDnTexture.dispose();
 

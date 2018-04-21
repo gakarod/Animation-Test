@@ -16,12 +16,14 @@ public class fifth implements Screen {
 	private Animation<TextureRegion> animation;
 	Texture img;
 	private float showTime = 0;
+	int index ;
 	private TextureAtlas atlas;
 	Array<TextureRegion> frames = new Array<TextureRegion>();
-Game game;
-	public fifth(Game game)
+come game;
+	public fifth(come game , int index)
 	{
 		this.game = game;
+		this.index = index ;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("fifth.atlas"));
@@ -50,10 +52,14 @@ Game game;
 		batch.begin();
 	//	batch.draw(img, 0, 0);
 
-		if(animation.getKeyFrame(showTime ) != null) {
-			batch.draw(animation.getKeyFrame(showTime, true), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
+		if(!animation.isAnimationFinished(showTime) ) {
+			batch.draw(animation.getKeyFrame(showTime), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		}
+		else
+		{
+			game.setScreen(new WordGameScreen(game , index));
+		}
+
 		batch.end();
 	}
 
