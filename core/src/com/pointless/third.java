@@ -1,6 +1,5 @@
 package com.pointless;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,39 +15,27 @@ public class third implements Screen {
 	private Animation<TextureRegion> animation;
 	Texture img;
 	private float showTime = 0;
+	int index ;
 	private TextureAtlas atlas;
 	Array<TextureRegion> frames = new Array<TextureRegion>();
-Game game;
-	public third(Game game)
+	private ExerciseData exercise;
+come game;
+	public third(come game , int index , ExerciseData exerciseData)
 	{
 		this.game = game;
+		this.index = index ;
+		this.exercise = exerciseData;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		atlas = new TextureAtlas(Gdx.files.internal("third.atlas"));
+		atlas = new TextureAtlas(Gdx.files.internal("fifth.atlas"));
 
-		frames.add(new TextureRegion(atlas.findRegion("third",0)));
-		frames.add(new TextureRegion(atlas.findRegion("third",1)));
-		frames.add(new TextureRegion(atlas.findRegion("third",2)));
-		frames.add(new TextureRegion(atlas.findRegion("third",3)));
-		frames.add(new TextureRegion(atlas.findRegion("third",4)));
-		frames.add(new TextureRegion(atlas.findRegion("third",5)));
-		frames.add(new TextureRegion(atlas.findRegion("third",6)));
-		frames.add(new TextureRegion(atlas.findRegion("third",7)));
-		frames.add(new TextureRegion(atlas.findRegion("third",8)));
-		frames.add(new TextureRegion(atlas.findRegion("third",9)));
-		frames.add(new TextureRegion(atlas.findRegion("third",10)));
-		frames.add(new TextureRegion(atlas.findRegion("third",11)));
-		frames.add(new TextureRegion(atlas.findRegion("third",12)));
-		frames.add(new TextureRegion(atlas.findRegion("third",13)));
-		frames.add(new TextureRegion(atlas.findRegion("third",14)));
-		frames.add(new TextureRegion(atlas.findRegion("third",15)));
-		frames.add(new TextureRegion(atlas.findRegion("third",16)));
-		frames.add(new TextureRegion(atlas.findRegion("third",17)));
-		frames.add(new TextureRegion(atlas.findRegion("third",18)));
-		frames.add(new TextureRegion(atlas.findRegion("third",19)));
-		frames.add(new TextureRegion(atlas.findRegion("third",20)));
-		frames.add(new TextureRegion(atlas.findRegion("third",21)));
-		frames.add(new TextureRegion(atlas.findRegion("third",22)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",0)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",1)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",2)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",3)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",4)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",5)));
+		frames.add(new TextureRegion(atlas.findRegion("bubble",6)));
 
 		animation = new Animation<TextureRegion>(1/5f,frames);
 	}
@@ -66,10 +53,14 @@ Game game;
 		batch.begin();
 	//	batch.draw(img, 0, 0);
 
-		if(animation.getKeyFrame(showTime ) != null) {
-			batch.draw(animation.getKeyFrame(showTime, true), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
+		if(!animation.isAnimationFinished(showTime) ) {
+			batch.draw(animation.getKeyFrame(showTime), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		}
+		else
+		{
+			game.setScreen(new ShapeGameScreen(game , index , exercise ));
+		}
+
 		batch.end();
 	}
 

@@ -19,11 +19,13 @@ public class fifth implements Screen {
 	int index ;
 	private TextureAtlas atlas;
 	Array<TextureRegion> frames = new Array<TextureRegion>();
+	private ExerciseData exercise;
 come game;
-	public fifth(come game , int index)
+	public fifth(come game , int index , ExerciseData exerciseData)
 	{
 		this.game = game;
 		this.index = index ;
+		this.exercise = exerciseData;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("fifth.atlas"));
@@ -57,7 +59,7 @@ come game;
 		}
 		else
 		{
-			game.setScreen(new WordGameScreen(game , index));
+			game.setScreen(new ShapeGameScreen(game , index , exercise ));
 		}
 
 		batch.end();

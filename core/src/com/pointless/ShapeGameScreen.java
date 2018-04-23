@@ -9,10 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -22,11 +20,10 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
-public class WordGameScreen implements Screen {
+public class ShapeGameScreen implements Screen {
 
     private Texture fish = null;
     private float blockWidth,blockX;
@@ -49,7 +46,6 @@ public class WordGameScreen implements Screen {
 
     come game;
     private Stage stage;
-    private Stage stage2;
     Label name ;
     Label name2 ;
     Label.LabelStyle label1Style = new Label.LabelStyle();
@@ -71,7 +67,7 @@ public class WordGameScreen implements Screen {
     second sec;
     Array<TextureRegion> list = new Array<TextureRegion>();
     String a;
-    public WordGameScreen(final come game , int index , ExerciseData exerciseData) {
+    public ShapeGameScreen(final come game , int index , ExerciseData exerciseData) {
 
         this.game = game;
         this.exercise = exerciseData;
@@ -82,13 +78,10 @@ public class WordGameScreen implements Screen {
             exercise = CommonObjects.urlHandler.getExercise();}
         stage = new Stage(viewport);
         this.index = index;
-        words = exercise.getWords();
+   //     words = exercise.getWords();
         imageCounter = 0;
-        url = exercise.getImageUrls();
-     //   url[0] = ;
-   //     url[1] = ;
-     //   url[2] = ;
-     //   url[3] = ;
+   //     url = exercise.getImageUrls();
+
         list.add(new TextureRegion(atlas.findRegion("button",0)));
         list.add(new TextureRegion(atlas.findRegion("button",1)));
         win = new Texture(Gdx.files.internal("winner.png"));
@@ -119,13 +112,14 @@ if(index == 1){
             );
        texture1 = CommonObjects.imageLoader.getImage();
     }*/
-        CommonObjects.imageLoader.loadImage(url[index], Gdx.graphics.getWidth() , Gdx.graphics.getHeight());
-        texture1 = CommonObjects.imageLoader.getImage();
-     //   animation = new Animation<TextureRegion>(1/5f,frames);
-        //  String words[] = new String[3] ;
-     //   words = new String[]{"start" , "finish" , "good" , "help"} ;
+  //      CommonObjects.imageLoader.loadImage(url[index], Gdx.graphics.getWidth() , Gdx.graphics.getHeight());
+   //     texture1 = CommonObjects.imageLoader.getImage();
+
+texture1 = new Texture(Gdx.files.internal("shape_"+index+".png"));
+          words = new String[]{"circle" , "square" , "triangle ", "pentagon" , "star" , "rectangle"} ;
+
         CommonObjects.textToSpeech.speak(words[index]);
-         a = new String(" " + words[index].charAt(0));
+
     }
 
     @Override
@@ -159,11 +153,12 @@ if(index == 1){
         okay.setWidth(6*game.screenWidth/7);
         okay.setVisible(false);
         okay.setPosition(game.screenWidth/8,game.screenHeight/4);
+
 if(texture1 != null) {
     Image image1 = new Image(texture1);
     image1.setZIndex(3);
-    image1.setWidth(7*game.screenWidth/8);
-    image1.setHeight(7 * game.screenHeight / 8);
+    image1.setWidth(game.screenWidth/2);
+    image1.setHeight(game.screenHeight / 2);
     image1.setPosition(game.screenWidth / 5, game.screenHeight / 6);
     stage.addActor(image1);
 }
@@ -181,8 +176,9 @@ nice.setVisible(false);*/
             okay.setVisible(true);
                  if ((System.currentTimeMillis() - timer) >= 2000 ){
                 over = false;
-                CommonObjects.imageLoader.loadImage(url[index], Gdx.graphics.getWidth() , Gdx.graphics.getHeight());
-                     texture1 = CommonObjects.imageLoader.getImage();
+//                CommonObjects.imageLoader.loadImage(url[index], Gdx.graphics.getWidth() , Gdx.graphics.getHeight());
+      //               texture1 = CommonObjects.imageLoader.getImage();
+                     texture1 = new Texture(Gdx.files.internal("shape_"+index+".png"));
                 game.setScreen(new fifth(game, index, exercise));
 
                  }
@@ -276,7 +272,7 @@ nice.setVisible(false);*/
             //textureX = game.screenWidth;
             index++; //    imageCounter++;
         }
-        if (index >= 4) {
+        if (index >= 6) {
             index = 0;
         }
 

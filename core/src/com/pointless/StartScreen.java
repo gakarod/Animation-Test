@@ -58,12 +58,12 @@ public class StartScreen extends ScreenAdapter {
     private Texture bgTexture;
 
     private final come game;
+    private ExerciseData exercise;
 
-
-    public StartScreen(come game) {
+    public StartScreen(come game , ExerciseData exerciseData) {
 
         this.game = game;
-
+        this.exercise = exerciseData;
 
     }
 
@@ -103,7 +103,7 @@ public class StartScreen extends ScreenAdapter {
 
                 super.tap(event, x, y, count, button);
 
-                game.setScreen(new fifth(game,0));
+                game.setScreen(new fifth(game,0 , exercise ));
 
                 dispose();
 

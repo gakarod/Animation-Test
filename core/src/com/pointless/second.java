@@ -24,13 +24,10 @@ public class second extends Actor {
 
 	public second(come game) {
 		this.game = game;
-		atlas = new TextureAtlas(Gdx.files.internal("second.atlas"));
+		atlas = new TextureAtlas(Gdx.files.internal("list.atlas"));
 		over = false;
-		frames.add(new TextureRegion(atlas.findRegion("second", 0)));
-		frames.add(new TextureRegion(atlas.findRegion("second", 1)));
-		frames.add(new TextureRegion(atlas.findRegion("second", 2)));
-		frames.add(new TextureRegion(atlas.findRegion("second", 3)));
-		frames.add(new TextureRegion(atlas.findRegion("second", 4)));
+		frames.add(new TextureRegion(atlas.findRegion("button",0)));
+		frames.add(new TextureRegion(atlas.findRegion("button",1)));
 
 
 		animation = new Animation<TextureRegion>(1 / 5f, frames);
@@ -40,9 +37,9 @@ public class second extends Actor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.draw(batch, parentAlpha);
+
+			getStage().getBatch().draw(animation.getKeyFrame(showTime,true),2*game.screenWidth/3-85, 120-85);
 
 	}
 
@@ -51,14 +48,6 @@ public class second extends Actor {
 		super.act(delta);
 		showTime += delta;
 		//	batch.draw(img, 0, 0);
-		img = animation.getKeyFrame(showTime, false);
-		if(animation.getKeyFrame(showTime ) != null) {
-			game.batch.draw(img, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		}
-		if (!animation.isAnimationFinished(showTime)) {
-			over = false;
-		} else {
-			over = true;
-		}
+
 	}
 }
